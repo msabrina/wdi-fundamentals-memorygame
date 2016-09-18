@@ -12,9 +12,8 @@ h1 {
 
 .board  {
   display: inline-block;
-  height: 50%;
+  height: 80%;
   width: 50%;
-  float: left;
   margin: 8%;
 }
 .card {
@@ -23,7 +22,7 @@ h1 {
   border: solid black 1px;
   background-color: yellow;
   border-radius: 10px;
-  display: inline-block;
+  float: left;
   margin: 8%;
 }
 
