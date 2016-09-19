@@ -1,51 +1,48 @@
-var cardOne = "queen";
-var cardTwo = "queen";
-var cardThree = "king";
-var cardFour = "king";
 
-/*if (cardOne === cardTwo) {
-alert("You found a match! (cardOne = cardTwo) " + cardOne + " " + cardTwo);
-} else {
-alert ("Sorry, try again. cardOne <> cardTwo " + cardOne + " " + cardTwo);
-}
-if (cardOne === cardThree) {
-alert("You found a match! (cardOne = cardThree) " + cardOne + " " + cardThree);
-} else {
-alert ("Sorry, try again. cardOne <> cardThree " + cardOne + " " + cardThree);
-}
-if (cardThree === cardFour) {
-alert("You found a match! (cardThree = cardFour) " + cardThree + " " + cardFour);
-} else {
-alert ("Sorry, try again. cardThree <> cardFour " + cardThree + " " + cardFour );
-}
-if (cardTwo === cardThree) {
-alert("You found a match! (cardTwo= cardThree) " + cardTwo + " " + cardThree );
-} else {
-alert ("Sorry, try again. cardTwo <> cardThree " + cardTwo + " " + cardThree );
-}
-if (cardTwo === cardFour) {
-alert("You found a match! (cardTwo= cardFour) " + cardTwo + " " + cardFour );
-} else {
-alert ("Sorry, try again. cardTwo <> cardFour " + cardTwo + " " + cardFour);
-}
-if (cardThree === cardFour) {
-alert("You found a match! (cardThree= cardFour) " + cardThree + " " + cardFour);
-} else {
-alert ("Sorry, try again. cardThree <> cardFour " + cardThree + " " + cardFour);
-}*/
-//find the board and set it to a variable
+var cards = ["queen", "queen", "king", "king"];
+var cardsInplay = []
+
+
 var board = getElementById("game-board");
 
 
 //create function createboard
-var createBoard= function() {
-  for (var i=0; i<cards.length; i++) {
+var createBoard = function() {
+  for (var i=0; i < cards.length; i++) {
     var cardElement = document.createElement('div');
       cardElement.className = 'card';
-        board.appendChild(cardElement);
+      cardElement.setAttribute('data-card', cards[i]);
+      cardElement.addEventListener('click', isTwoCards);
+      board.appendChild(cardElement);
   }
 
 }
 
-createboard()
+ var isTwoCards = function() {
+  cardsInPlay.push(this.getAttribute('data-card'));
+//show card image
+  console.log(this.getAttribute('data-card'));
+  if (this.getAttribute('data-card') === 'king') {
+      this.innerHTML = '<img src="playing-card-161492_640.png"/>'; // king
+  } else {
+    this.innerHTML = '<img src="playing-card-161494_640.png"/>'; //queen
+  }
+  //2 cards in play, check match
+  if (cardsInPlay.length === 2) {
+    isMatch(cardsInPlay);
+    cardsInplay = [];
+  }
+}
+
+var isMatch = function(cards) {
+  if (cards[0] === cards[1]) {
+    alert("You found a match");
+  }
+   else {
+    alert("Sorry, try again.");
+  }
+}
+
+
+createboard();
 
